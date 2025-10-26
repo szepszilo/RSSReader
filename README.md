@@ -1,17 +1,24 @@
-# DevProjects - RSS feed reader in terminal
+# RSSReader
 
-This is an open source project from [DevProjects](http://www.codementor.io/projects). Feedback and questions are welcome!
-Find the project requirements here: [RSS feed reader in terminal](https://www.codementor.io/projects/tool/rss-feed-reader-in-terminal-atx32jp82q)
+A tiny CLI that **downloads** an RSS/Atom feed (with an explicit *User-Agent* and a 10s timeout), **parses** it using [`feedparser`](https://pypi.org/project/feedparser/), and prints each entry’s **title**, **link**, **published date**, and **summary**.  
+Includes friendly **error handling** for HTTP, network, timeout, and parse issues.
 
-## Tech/framework used
-Built with Python
-s
-## Screenshots and demo
-Screenshots of your app and/or a link to your live demo
+---
 
-## Installation
-Instructions for other developers on how to install and run your code on their local environment.
+## Features
+- Fetch via `urllib.request` with custom **User-Agent** and **timeout**.
+- Check **HTTP status** (non-200 → clear error).
+- Detect parsing problems via **`feedparser`’s `bozo` flag**.
+- Safe field fallbacks:
+  - `title` → `"(no title)"`
+  - `published` → try `published`, then `updated`, else `"(no date)"`
+  - `summary` → try `summary`, then `description`, else `""`
+- Human-readable error messages.
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-Most open source projects use the MIT license. Feel free to choose whichever license you prefer.
+---
+
+## Requirements
+- **Python 3.8+**
+- **feedparser**
+
+`requirements.txt` example:
