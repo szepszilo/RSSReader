@@ -20,7 +20,7 @@ def feed(url):
         print("\n")
 
         for i in items:
-            title = getattr(i, "title", "(nincs cím)")
+            title = getattr(i, "title", "(no title)")
             link = getattr(i, "link", "")
             published = getattr(i, "published", None) or getattr(i, "updated", None) or "(no date)"
             summary = getattr(i, "summary", None) or getattr(i, "description", None) or ""
